@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Be My Valentine 💘</title>
+<style>
+
+    body {
+
+      margin: 0;
+
+      height: 100vh;
+
+      display: flex;
+
+      justify-content: center;
+
+      align-items: center;
+
+      background: linear-gradient(to bottom right, #ffd6e8, #fff0f5);
+
+      font-family: "Comic Sans MS", cursive;
+
+    }
+
+    .card {
+
+      text-align: center;
+
+      background: white;
+
+      padding: 40px;
+
+      border-radius: 25px;
+
+      box-shadow: 0 0 25px rgba(0,0,0,0.2);
+
+      width: 400px;
+
+    }
+
+    h1 {
+
+      color: #ff4d88;
+
+    }
+
+    img {
+
+      width: 200px;
+
+      margin: 15px 0;
+
+    }
+
+    .buttons {
+
+      margin-top: 20px;
+
+      position: relative;
+
+      height: 120px;
+
+    }
+
+    button {
+
+      padding: 14px 28px;
+
+      font-size: 18px;
+
+      border: none;
+
+      border-radius: 12px;
+
+      cursor: pointer;
+
+    }
+
+    #yes {
+
+      background: #4CAF50;
+
+      color: white;
+
+    }
+
+    #no {
+
+      background: #ff3333;
+
+      color: white;
+
+      position: absolute;
+
+      left: 220px;
+
+      top: 20px;
+
+    }
+</style>
+</head>
+<body>
+<div class="card">
+<h1>Will you be my Valentine? 💖</h1>
+<!-- Put cute.png in same folder -->
+<img src="cute.png" alt="cute cartoon">
+<div class="buttons">
+<button id="yes" onclick="yesClicked()">Yes 💘</button>
+<button id="no">No 💔</button>
+</div>
+</div>
+<script>
+
+    const noBtn = document.getElementById("no");
+
+    const container = document.querySelector(".buttons");
+
+    noBtn.addEventListener("mouseover", () => {
+
+      const containerRect = container.getBoundingClientRect();
+
+      const btnWidth = noBtn.offsetWidth;
+
+      const btnHeight = noBtn.offsetHeight;
+
+      const x = Math.random() * (containerRect.width - btnWidth);
+
+      const y = Math.random() * (containerRect.height - btnHeight);
+
+      noBtn.style.left = `${x}px`;
+
+      noBtn.style.top = `${y}px`;
+
+    });
+
+    noBtn.addEventListener("click", (e) => {
+
+      e.preventDefault();
+
+    });
+
+    function yesClicked() {
+
+      document.body.innerHTML = `
+<div style="text-align:center; margin-top:20%;">
+<h1 style="color:#ff4d88; font-size:3rem;">
+
+            Yayyyy 💖 I love youuuu 😭💘
+</h1>
+</div>
+
+      `;
+
+    }
+</script>
+</body>
+</html>
+ 
