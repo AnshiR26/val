@@ -21,6 +21,8 @@
 
       font-family: "Comic Sans MS", cursive;
 
+      overflow: hidden;
+
     }
 
     .card {
@@ -35,7 +37,7 @@
 
       box-shadow: 0 0 25px rgba(0,0,0,0.2);
 
-      width: 400px;
+      width: 420px;
 
     }
 
@@ -43,19 +45,31 @@
 
       color: #ff4d88;
 
+      font-size: 2.3rem;
+
+      margin-bottom: 20px;
+
     }
 
     img {
 
       width: 200px;
 
-      margin: 15px 0;
+      margin: 10px 0 25px;
 
     }
 
+    /* ✅ Button Area */
+
     .buttons {
 
-      margin-top: 20px;
+      margin-top: 10px;
+
+      display: flex;
+
+      justify-content: center;
+
+      gap: 20px;
 
       position: relative;
 
@@ -75,6 +89,8 @@
 
       cursor: pointer;
 
+      transition: 0.2s;
+
     }
 
     #yes {
@@ -91,11 +107,43 @@
 
       color: white;
 
+      position: relative; /* starts normally */
+
+    }
+
+    /* ✅ Crying Emoji Effect */
+
+    .cry {
+
       position: absolute;
 
-      left: 220px;
+      font-size: 28px;
 
-      top: 20px;
+      opacity: 0.8;
+
+      animation: fadeOut 2s forwards;
+
+      pointer-events: none;
+
+    }
+
+    @keyframes fadeOut {
+
+      0% {
+
+        transform: scale(1);
+
+        opacity: 0.9;
+
+      }
+
+      100% {
+
+        transform: scale(1.6);
+
+        opacity: 0;
+
+      }
 
     }
 </style>
@@ -103,7 +151,7 @@
 <body>
 <div class="card">
 <h1>Will you be my Valentine? 💖</h1>
-<!-- Put cute.png in same folder -->
+<!-- ✅ Put cute.png in same folder -->
 <img src="cute.png" alt="cute cartoon">
 <div class="buttons">
 <button id="yes" onclick="yesClicked()">Yes 💘</button>
@@ -117,6 +165,14 @@
     const container = document.querySelector(".buttons");
 
     noBtn.addEventListener("mouseover", () => {
+
+      // ✅ Crying emoji scatter effect
+
+      spawnCryEmojis();
+
+      // ✅ Button runs away
+
+      noBtn.style.position = "absolute";
 
       const containerRect = container.getBoundingClientRect();
 
@@ -134,11 +190,39 @@
 
     });
 
-    noBtn.addEventListener("click", (e) => {
+    // ✅ Function to create crying emojis
 
-      e.preventDefault();
+    function spawnCryEmojis() {
 
-    });
+      for (let i = 0; i < 6; i++) {  // not too many emojis
+
+        const emoji = document.createElement("div");
+
+        emoji.className = "cry";
+
+        emoji.innerText = "😭";
+
+        // random positions on screen
+
+        emoji.style.left = Math.random() * window.innerWidth + "px";
+
+        emoji.style.top = Math.random() * window.innerHeight + "px";
+
+        document.body.appendChild(emoji);
+
+        // remove after animation
+
+        setTimeout(() => {
+
+          emoji.remove();
+
+        }, 2000);
+
+      }
+
+    }
+
+    // ✅ Yes Button Click
 
     function yesClicked() {
 
@@ -146,7 +230,9 @@
 <div style="text-align:center; margin-top:20%;">
 <h1 style="color:#ff4d88; font-size:3rem;">
 
-            Yayyyy 💖 I love youuuu 😭💘
+            Yayyyy 💖😭💘<br>
+
+            You are my Valentineeee!!!
 </h1>
 </div>
 
